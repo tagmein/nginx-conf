@@ -1,27 +1,23 @@
 server {
-
-    server_name legacy.tagme.in;
+ server_name e.tagme.in;
 
     location / {
-        proxy_pass http://localhost:3000;
+        proxy_pass http://localhost:4040;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
         proxy_cache_bypass $http_upgrade;
     }
-
 }
 server {
-    if ($host = legacy.tagme.in) {
+    if ($host = e.tagme.in) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
 
+ server_name e.tagme.in;
     listen 80;
-    listen [::]:80;
-
-    server_name legacy.tagme.in;
     return 404; # managed by Certbot
 
 
